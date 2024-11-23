@@ -16,6 +16,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/restaurants', [RestaurantsController::class, 'index'])->name('restaurants');
 Route::get('/dishes/{res_id}', [DishesController::class, 'show'])->name('dishes.show');
 Route::post('/dishes/{res_id}/add', [DishesController::class, 'addDish'])->name('dishes.add');
+Route::get('/dishes/{res_id}/remove', [DishesController::class, 'removeDish'])->name('dishes.remove');
+
+
 
 Route::get('/checkout', [DishesController::class, 'showCheckout'])->name('checkout.show');
 Route::post('/checkout', [DishesController::class, 'placeOrder'])->name('checkout.process');
@@ -58,11 +61,13 @@ Route::middleware([AdminAuth::class])->group(function () {
     // Orders
     Route::get('/admin/order', [OrderAdminController::class, 'index'])->name('admin.all_orders');
     Route::get('/admin/order/{o_id}/view', [OrderAdminController::class, 'viewOrder'])->name('admin.all_orders.view');
+    Route::delete('/admin/order/{o_id}/delete', [OrderAdminController::class, 'deleteOrder'])->name('admin.all_orders.delete');
+    Route::put('/admin/order/{o_id}/update', [OrderAdminController::class, 'updateOrder'])->name('admin.all_orders.update');
 
     // Laporan
     Route::get('/userorders/monthly-report', [OrderAdminController::class, 'monthlyReport'])->name('userorders.monthlyReport');
 
 
     // Logout
-    Route::post('/admin/logout', [AdminController::class, 'logout'  ])->name('admin.logout');
+    Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });

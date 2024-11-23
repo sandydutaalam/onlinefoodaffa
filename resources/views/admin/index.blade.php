@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Admin Login</title>
@@ -12,15 +11,14 @@
     <link rel="stylesheet" href="{{ asset('css/admin/login.css') }}">
 
 </head>
-
 <body>
     <div class="container">
         <div class="info">
-            <h1>Admin Panel </h1>
+            <h1>Admin Panel</h1>
         </div>
     </div>
     <div class="form">
-        <div class="thumbnail"><img src="{{ asset('images/manager.png') }}" /></div>
+        <div class="thumbnail"><img src="{{ asset('images/manager.png') }}"/></div>
 
         <!-- Display Error Messages -->
         @if ($errors->any())
@@ -34,14 +32,13 @@
 
         <form class="login-form" action="{{ route('admin.login.submit') }}" method="post">
             @csrf
-            <input type="text" placeholder="Username" name="username" required />
-            <input type="password" placeholder="Password" name="password" required />
-            <input type="submit" name="submit" value="Login" />
+            <input type="text" placeholder="Username" name="username" required/>
+            <input type="password" placeholder="Password" name="password" required/>
+            <input type="submit" name="submit" value="Login"/>
         </form>
     </div>
 
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="{{ asset('js/index.js') }}"></script>
 </body>
-
 </html>

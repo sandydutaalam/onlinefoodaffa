@@ -22,21 +22,17 @@
                     </a>
                 </div>
                 <div class="navbar-collapse">
-                    <ul class="mr-auto navbar-nav mt-md-0">
+                    <ul class="navbar-nav mr-auto mt-md-0">
                     </ul>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-muted" href="#" data-toggle="dropdown">
-                            <img src="{{ asset('images/bookingSystem/user-icn.png') }}" alt="user"
-                                class="profile-pic" />
+                            <img src="{{ asset('images/bookingSystem/user-icn.png') }}" alt="user" class="profile-pic" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <ul class="dropdown-user">
-                                <li><a href="#"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                                            class="fa fa-power-off"></i> Logout</a></li>
+                                <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Logout</a></li>
 
-                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
-                                    style="display: none;">
+                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
 
@@ -50,40 +46,33 @@
             <div class="scroll-sidebar">
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        @if (session('role') == 'admin')
-                            <li class="nav-devider"></li>
-                            <li class="nav-label">Home</li>
-                            <li>
-                                <a href="{{ url('admin/dashboard') }}">
-                                    <i class="fa fa-tachometer"></i><span>Dashboard</span>
-                                </a>
-                            </li>
-                        @endif
-
-
+                        <li class="nav-devider"></li>
+                        <li class="nav-label">Home</li>
+                        <li>
+                            <a href="{{ url('admin/dashboard') }}">
+                                <i class="fa fa-tachometer"></i><span>Dashboard</span>
+                            </a>
+                        </li>
                         <li class="nav-label">Log</li>
-                        @if (session('role') == 'admin')
-                            <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
-                                    <i class="fa fa-archive f-s-20 color-warning"></i><span
-                                        class="hide-menu">Restaurant</span>
-                                </a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a href="{{ url('admin/all_restaurant') }}">All Restaurant</a></li>
-                                    <li><a href="{{ route('admin.categories.create') }}">Add Category</a></li>
-                                    <li><a href="{{ route('admin.restaurants.create') }}">Add Restaurant</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
-                                    <i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span>
-                                </a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a href="{{ url('admin/all_menu') }}">All Menu</a></li>
-                                    <li><a href="{{ route('admin.menues.create') }}">Add Menu</a></li>
-                                </ul>
-                            </li>
-                        @endif
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Restaurant</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ url('admin/all_restaurant') }}">All Restaurant</a></li>
+                                <li><a href="{{ route('admin.categories.create') }}">Add Category</a></li>
+                                <li><a href="{{ route('admin.restaurants.create') }}">Add Restaurant</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ url('admin/all_menu') }}">All Menu</a></li>
+                                <li><a href="{{ route('admin.menues.create') }}">Add Menu</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="{{ url('admin/order') }}">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span>
@@ -98,8 +87,7 @@
                 <div class="col-lg-12">
                     <div class="card card-outline-primary">
                         <div class="card-header">
-                            <h4 class="text-white m-b-0">Admin Dashboard
-                            </h4>
+                            <h4 class="m-b-0 text-white">Admin Dashboard</h4>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
@@ -152,7 +140,7 @@
                                         </div>
                                         <div class="media-body media-text-right">
                                             <h2>{{ $categoryCount }}</h2>
-                                            <p class="m-b-0">Restro Categories</p>
+                                            <p class="m-b-0">Resto Categories</p>
                                         </div>
                                     </div>
                                 </div>

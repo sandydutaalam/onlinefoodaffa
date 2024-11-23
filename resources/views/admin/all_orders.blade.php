@@ -62,40 +62,34 @@
             <div class="scroll-sidebar">
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        @if (session('role') == 'admin')
-                            <li class="nav-devider"></li>
-                            <li class="nav-label">Home</li>
-                            <li>
-                                <a href="{{ url('admin/dashboard') }}">
-                                    <i class="fa fa-tachometer"></i><span>Dashboard</span>
-                                </a>
-                            </li>
-                        @endif
-
-
+                        <li class="nav-devider"></li>
+                        <li class="nav-label">Home</li>
+                        <li>
+                            <a href="{{ url('admin/dashboard') }}">
+                                <i class="fa fa-tachometer"></i><span>Dashboard</span>
+                            </a>
+                        </li>
                         <li class="nav-label">Log</li>
-                        @if (session('role') == 'admin')
-                            <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
-                                    <i class="fa fa-archive f-s-20 color-warning"></i><span
-                                        class="hide-menu">Restaurant</span>
-                                </a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a href="{{ url('admin/all_restaurant') }}">All Restaurant</a></li>
-                                    <li><a href="{{ route('admin.categories.create') }}">Add Category</a></li>
-                                    <li><a href="{{ route('admin.restaurants.create') }}">Add Restaurant</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
-                                    <i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span>
-                                </a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li><a href="{{ url('admin/all_menu') }}">All Menu</a></li>
-                                    <li><a href="{{ route('admin.menues.create') }}">Add Menu</a></li>
-                                </ul>
-                            </li>
-                        @endif
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="fa fa-archive f-s-20 color-warning"></i><span
+                                    class="hide-menu">Restaurant</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ url('admin/all_restaurant') }}">All Restaurant</a></li>
+                                <li><a href="{{ route('admin.categories.create') }}">Add Category</a></li>
+                                <li><a href="{{ route('admin.restaurants.create') }}">Add Restaurant</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ url('admin/all_menu') }}">All Menu</a></li>
+                                <li><a href="{{ route('admin.menues.create') }}">Add Menu</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="{{ url('admin/order') }}">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span>
@@ -165,7 +159,7 @@
                                                 <th>Price</th>
                                                 <th>Nomor Meja</th>
                                                 <th>Status</th>
-                                                <th>Reg-Date</th>
+                                                <th>Update Order Time</th>
                                                 <th>Action</th>
 
                                             </tr>
@@ -176,14 +170,40 @@
                                                     <td>{{ $order->title }}</td>
                                                     <td>{{ $order->note }}</td>
                                                     <td>{{ $order->quantity }}</td>
-                                                    <td>Rp. {{ number_format($order->price, 0, ',', '.') }}</td>
+                                                    <td>Rp. {{ number_format($order->price, 3, ',', '.') }}</td>
                                                     <td>{{ $order->table_number }}</td>
-                                                    <td> <button type="button" class="btn btn-info"><span
+                                                    <!-- <td> <button type="button" class="btn btn-info"><span
                                                                 class="fa fa-bars" aria-hidden="true"></span>
-                                                            Dispatch</button></td>
+                                                            Dispatch</button> -->
+                                                        <!-- <td> 
+                                                            
+                                                   <select id="dispacth" name="dispacth" class="form-control" required>
+                                                        <option value=""> Ready</option>
+                                                        <option value="bca">On Progress</option>
+                                                        
+                                                        
+                                                    </select>
+                                                    </td> -->
+
+                                                    <td>
+                                                    <form action="{{ route('admin.all_orders.update', ['o_id' => $order->o_id]) }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="input-group">
+                                                            <select name="status" class="form-select">
+                                                                <option value="on_the_way" {{ $order->status == 'on_the_way' ? 'selected' : '' }}>On the Way</option>
+                                                                <option value="delivered" {{ $order->status == 'delivered' ? 'selected' : '' }}>Delivered</option>
+                                                                <option value="rejected" {{ $order->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                                            </select>
+                                                            <button type="submit" class="btn btn-info">Update</button>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                                
+
                                                     <td>{{ $order->date }}</td>
                                                     <td>
-                                                        <form action="" method="POST"
+                                                        <!-- <form action="delete" method="delete"
                                                             onsubmit="return confirm('Apakah Anda yakin ingin menghapus menu ini?');">
                                                             @csrf
                                                             @method('DELETE')
@@ -191,10 +211,18 @@
                                                                 class="btn btn-danger btn-flat btn-addon btn-xs m-b-10">
                                                                 <i class="fa fa-trash-o" style="font-size:16px"></i>
                                                             </button>
+                                                        </form> -->
+                                                        <form action="{{ route('admin.all_orders.delete', ['o_id' => $order->o_id]) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus order ini?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10">
+                                                        <i class="fa fa-trash-o" style="font-size:16px"></i>
+                                                    </button>
                                                         </form>
+
                                                         <a href="{{ route('admin.all_orders.view', ['o_id' => $order->o_id]) }}"
                                                             class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5">
-                                                            <i class="fa fa-edit"></i>
+                                                            <i class="fa fa-eye"></i>
                                                         </a>
                                                     </td>
                                                 </tr>

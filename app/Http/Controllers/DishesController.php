@@ -96,4 +96,21 @@ class DishesController extends Controller
 
         return redirect()->route('home')->with('success', 'Thank you. Your order has been placed!');
     }
+    public function removeDish(Request $request, $res_id)
+    {
+    // Ambil ID item dari query string
+    $dish_id = $request->query('id');
+
+    // Ambil cart dari session
+    $cart = session()->get('cart_item', []);
+
+    // Hapus item jika ada di cart
+    if (isset($cart[$dish_id])) {
+        unset($cart[$dish_id]); // Hapus item dari array
+        session()->put('cart_item', $cart); // Update session
+    }
+
+    // Redirect kembali ke halaman dishes
+    return redirect()->route('dishes.show', ['res_id' => $res_id])->with('success', 'Item berhasil dihapus dari keranjang.');
+    }
 }

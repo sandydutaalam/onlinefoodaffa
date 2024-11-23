@@ -157,8 +157,8 @@
                     </div>
                     <div class="col-xs-12 col-sm-4 address color-gray">
                         <h5>Address</h5>
-                        <p>23 Pasir Kaliki Mall, Bandung</p>
-                        <h5>Phone: (022) 1234567</a></h5>
+                        <p>Jl. Pulo Asem Utara Raya No.59, RT.15/RW.2, Jati, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220</p>
+                        <h5>Phone: 0815-8517-9888</a></h5>
                     </div>
                     <div class="col-xs-12 col-sm-5 additional-info color-gray">
                         <h5>Addition informations</h5>

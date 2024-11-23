@@ -116,7 +116,7 @@ class RestaurantAdminController extends Controller
         DB::table('res_category')->where('c_id', $c_id)->delete();
 
         // Mengarahkan kembali ke halaman yang diinginkan setelah penghapusan
-        return redirect()->route('admin.categories.create')->with('success', 'Restaurant berhasil dihapus');
+        return redirect()->route('admin.categories.create')->with('success', 'Category restaurant berhasil dihapus');
     }
 
     public function editCategory($c_id)

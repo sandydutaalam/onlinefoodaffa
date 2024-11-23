@@ -33,7 +33,6 @@ CREATE TABLE `admin` (
   `password` varchar(222) NOT NULL,
   `email` varchar(222) NOT NULL,
   `code` varchar(222) NOT NULL,
-  `role` varchar(222) NOT NULL DEFAULT 'admin',
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -41,11 +40,8 @@ CREATE TABLE `admin` (
 -- Dumping data untuk tabel `admin`
 --
 
-INSERT INTO `admin` (`adm_id`, `username`, `password`, `email`, `code`, `date`, role) VALUES
-(1, 'admin', '12345', 'admin@mail.com', '', '2024-10-19 10:08:28', 'admin'),
-(2, 'kasir', '12345', 'kasir@mail.com', '', '2024-10-19 10:08:28', 'kasir');
-
-
+INSERT INTO `admin` (`adm_id`, `username`, `password`, `email`, `code`, `date`) VALUES
+(1, 'admin', '12345', 'admin@mail.com', '', '2024-10-19 10:08:28');
 
 -- --------------------------------------------------------
 

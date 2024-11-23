@@ -22,30 +22,26 @@ class AdminController extends Controller
 
         if ($admin) {
             session(['adm_id' => $admin->adm_id]);
-            session(['role' => $admin->role]);
-            if ($admin->role == 'admin') {
-                return redirect()->route('admin.dashboard');
-            } else {
-                return redirect()->route('admin.all_orders');
-            }
+            return redirect()->route('admin.dashboard');
         } else {
             return redirect()->back()->withErrors(['Invalid Username or Password!']);
         }
     }
 
     public function dashboard()
-    { {
+    {
+        {
             $restaurantsCount = DB::table('restaurant')->count();
             $dishesCount = DB::table('dishes')->count();
             $ordersCount = DB::table('users_orders')->count();
             $categoryCount = DB::table('res_category')->count();
-            $processingOrders = DB::table('users_orders')->where('status', 'in process')->count();
-            $deliveredOrders = DB::table('users_orders')->where('status', 'closed')->count();
-            $cancelledOrders = DB::table('users_orders')->where('status', 'rejected')->count();
+            $processingOrders = DB::table('users_orders')->where('status', 'on_the_way')->count();
+            $deliveredOrders = DB::table('users_orders')->where('status', 'Delivered')->count();
+            $cancelledOrders = DB::table('users_orders')->where('status', 'Rejected')->count();
             $totalEarnings = DB::table('users_orders')
-                ->where('status', 'closed')
-                ->sum('price');
-
+                                ->where('status', 'Delivered')
+                                ->sum('price');
+        
             return view('admin.dashboard', compact(
                 'restaurantsCount',
                 'dishesCount',
