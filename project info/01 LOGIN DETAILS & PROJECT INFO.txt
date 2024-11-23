@@ -1,0 +1,20 @@
+**Database Name: onlinefoodphp**
+
+**Developed by Azka Zaviar**
+
+**Recommended PHP Version 5.6, 7.4**
+
+1. Download Database onlinefoodphp.sql
+2. Create Database in phpmyadmin with name onlinefoodphp
+3. Import Database onlinefoodphp.sql
+4. After Import Success, go to admin table, and modification "12345" in password with "827ccb0eea8a706c4c34a16891f84e7b"
+5. Open Project in VSC
+6. Run the Terminal
+7. Run php artisan migrate
+8. Run php artisan serve
+
+**Admin Login Details**
+if you want to go to admin panel, add "/admin" in your last webaddress
+Username: admin
+Password: 12345
+
